@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: msc-minimum-sum-coloring
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn web.app:app"
+    autoDeploy: true
