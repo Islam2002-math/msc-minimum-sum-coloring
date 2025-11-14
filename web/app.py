@@ -78,7 +78,7 @@ def load_metrics() -> list[ExperimentResult]:
 
 @app.route("/")
 def index():
-    """Page d'accueil simple avec un bouton pour aller vers l'expérience."""
+    """Page d'accueil du site."""
 
     html = """<!doctype html>
 <html lang=\"fr\">
@@ -86,26 +86,18 @@ def index():
     <meta charset=\"utf-8\" />
     <title>Minimum Sum Coloring - Accueil</title>
     <style>
-      body { font-family: system-ui, -apple-system, sans-serif; margin: 2rem; }
-      h1, h2 { color: #222; }
-      .btn { display: inline-block; padding: 0.5rem 1rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+      body { font-family: system-ui, -apple-system, sans-serif; margin: 2rem; text-align: center; }
+      h1 { color: #222; font-size: 3rem; font-weight: 700; margin-top: 2rem; }
+      p  { font-size: 1rem; }
+      .btn { display: inline-block; padding: 0.75rem 1.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 1.1rem; margin-top: 1.5rem; }
       .btn:hover { background: #0056b3; }
     </style>
   </head>
   <body>
-    <h1>Bienvenue sur le projet Minimum Sum Coloring</h1>
+    <h1>Bonjour ma princesse</h1>
+    <p>Ce site te montre la coloration somme minimale de graphes aléatoires.</p>
     <p>
-      Ce petit site te permet de jouer avec un problème de coloriage de graphes.
-      Tu peux générer plusieurs graphes aléatoires, lancer les algorithmes Greedy
-      et Tabu Search, et voir combien de couleurs sont utilisées et quelle est la
-      somme totale des couleurs.
-    </p>
-    <p>
-      Quand tu es prêt, clique sur le bouton ci-dessous pour continuer vers la
-      page d'expérience.
-    </p>
-    <p>
-      <a href=\"/experiment\" class=\"btn\">Continuer</a>
+      <a href=\"/experiment\" class=\"btn\">Entrer sur le site</a>
     </p>
   </body>
 </html>
@@ -130,10 +122,16 @@ def experiment():
 
         run_experiment(num_graphs=num_graphs, n=n, p=p, base_seed=base_seed)
 
-    # Make sure artifacts are present for this request.
+    # Make sure artifacts are present for this request (images, etc.).
     ensure_artifacts()
     metrics = load_metrics()
-    print("[DEBUG] metrics loaded:", len(metrics))
+
+    # Si pour une raison quelconque il n'y a pas encore de métriques
+    # (par exemple première exécution sur un nouvel hébergement),
+    # on lance une expérience par défaut puis on relit le CSV.
+    if not metrics:
+        run_experiment()
+        metrics = load_metrics()
 
     # Prépare les lignes HTML du tableau ici (plus simple que d'utiliser une boucle Jinja)
     table_rows = ""
