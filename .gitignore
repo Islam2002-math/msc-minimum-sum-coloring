@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# Editor/OS files
+*.swp
+*.swo
+.DS_Store
+
+# Experiment/web-generated artifacts
+web/static/graph_example.png
+web/static/metrics.png
+# Uncomment if you don't want to version metrics.csv
+# web/static/metrics.csv
