@@ -164,18 +164,18 @@ def experiment():
     </style>
   </head>
   <body>
-    <h1>Minimum Sum Coloring (MSC) - Visualisation</h1>
+    <h1>Minimum Sum Coloring (MSC) </h1>
     <p>
-      Cette page t'aide à comprendre un problème de coloriage de graphes.
-      Tu peux imaginer un graphe comme un ensemble de points (sommets)
+       Problème de coloriage de graphes.
+      Graphe comme un ensemble de points (sommets)
       reliés par des traits (arêtes). On doit colorier chaque point avec un numéro
-      (1, 2, 3, ...) de manière à ce que deux points reliés n'aient jamais le même numéro.
+      (1, 2, 3, ...) ou bien c'est la couleur de manière à ce que deux points reliés n'aient jamais le même numéro.
       Ensuite, on additionne tous les numéros&nbsp;: plus la somme est petite, mieux c'est.
     </p>
 
     <div class="section">
-      <h2>0. Paramètres de l'expérience</h2>
-      <p>Tu peux modifier ici les paramètres de génération des graphes et relancer l'expérience.</p>
+      <h2>Les paramètres de depart</h2>
+      <p>Entrer les paramètres.</p>
       <form method="post">
         <label>Nombre de graphes (num_graphs):
           <input type="number" name="num_graphs" value="20" min="1" max="100" />
